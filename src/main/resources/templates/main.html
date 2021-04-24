@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+        <div>
+            <form th:action="@{/new}" th:method="POST">
+                <input type="text" id="username" name="username">
+                <input type="text" id="password" name="password">
+                <input type="submit" value="Регистрация">
+            </form>
+        </div>
+        <br>
+        <div th:each="el : ${All}">
+            <div>
+                <span th:text="${el.id}"></span>
+                <span th:text="${el.username}"></span>
+
+                <form  th:method="GET" th:action="@{'/delete/'+${el.id}}">
+                    <input th:type="submit" value="delete">
+                </form>
+                <br>
+            </div>
+        </div>
+
+</body>
+</html>
