@@ -24,9 +24,7 @@ public class MainController {
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable long id){
-        if (newUserService.delete(id)){
-            return "redirect:/";
-        }
+        newUserService.delete(id);
         return "redirect:/";
     }
 }

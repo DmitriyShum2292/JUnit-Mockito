@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,7 +28,10 @@ public class TestsApplicationTest extends TestCase {
 
     @Test
     public void readTest() throws Exception {
-
+        NewUser user = new NewUser("peter","password");
+        user.setId(1);
+        when(repository.findById(1)).thenReturn(user);
+        assertEquals(user.getUsername(),"peter");
     }
     @Test
     public void readByUsername(){
@@ -57,5 +59,6 @@ public class TestsApplicationTest extends TestCase {
         user.setId(1);
         service.delete(user.getId());
         verify(repository,times(1)).deleteById(user.getId());
+
     }
 }

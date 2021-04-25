@@ -33,14 +33,8 @@ public class NewUserService {
         }
         return true;
     }
-    public boolean delete(long id){
-        try {
-            repository.deleteById(id);
-        }
-        catch (Exception e){
-            return false;
-        }
-        return true;
+    public void delete(long id){
+        repository.deleteById(id);
     }
     public ArrayList<NewUser>findAll(){
         return repository.findAll();
