@@ -13,8 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -41,6 +40,12 @@ public class SecondControllerTest extends TestCase {
                 .andExpect(jsonPath("$[*].username",containsInAnyOrder("Peter")));
     }
 
-    public void testFindOne() {
+    @Test
+    public void testFindOne() throws Exception{
+        when(service.read(1)).thenReturn(new NewUser("Peter","password"));
+
+        mockMvc.perform(get("/users/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username",equalTo("Peter")));
     }
 }
