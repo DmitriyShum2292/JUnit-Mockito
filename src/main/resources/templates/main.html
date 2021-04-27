@@ -22,9 +22,11 @@
                 <form  th:method="GET" th:action="@{'/delete/'+${el.id}}">
                     <input th:type="submit" value="delete">
                 </form>
+
                 <br>
             </div>
         </div>
+<a th:text="${message}"></a>
 
 </body>
 </html>

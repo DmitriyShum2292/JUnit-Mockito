@@ -12,8 +12,16 @@ public class NewUserService {
     @Autowired
     private NewUserRepository repository;
 
-    public NewUser create(NewUser newUser){
-        return repository.save(newUser);
+    public boolean create(NewUser newUser) throws Exception {
+        NewUser user = readByUsername(newUser.getUsername());
+        try {
+            user.getUsername();
+        }
+        catch (NullPointerException e){
+            repository.save(newUser);
+            return true;
+        }
+        return false;
     }
 
     public NewUser read(long id) throws Exception{

@@ -18,7 +18,7 @@ public class MainController {
         return "main";
     }
     @PostMapping("/new")
-    public String create(@RequestParam String username,String password){
+    public String create(@RequestParam String username,String password) throws Exception {
         newUserService.create(new NewUser(username,password));
         return "redirect:/";
     }

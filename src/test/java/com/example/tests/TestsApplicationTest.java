@@ -48,10 +48,10 @@ public class TestsApplicationTest extends TestCase {
         assertEquals(1,service.findAll().size());
     }
     @Test
-    public void saveTest(){
+    public void saveTest() throws Exception {
         NewUser user = new NewUser("peter","password");
         when(repository.save(user)).thenReturn(user);
-        assertEquals(user,service.create(user));
+        assertEquals(true,service.create(user));
     }
     @Test
     public void deleteTeset(){
